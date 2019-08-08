@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+  title: 'Roger McConkie learns JavaScript',
+    date: 'Aug 7, 2019',
+    firstParagraph: `It has been pretty dificult, but I've learned a lot of the concepts in JavaScript.`,
+
+    secondParagraph: `I've received a lot of help and direction from teachers, team leads, and other peers.`,
+
+    thirdParagraph: `I've definetly still got a long way to go.`
   }
 ];
 
@@ -112,3 +121,46 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+window.addEventListener('load', (e) => {
+
+
+const articles = document.querySelector('.articles')
+data.forEach(item => {
+  articles.appendChild(articleCreator(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph))
+});
+
+function articleCreator(title, date, firstParagraph, secondParagraph, thirdParagraph){
+  const article = document.createElement('div');
+  const ah2 = document.createElement('h2');
+  const ap = document.createElement('p');
+  const pOne = document.createElement('p');
+  const pTwo = document.createElement('p');
+  const pThree = document.createElement('p');
+  const aspan = document.createElement('span');
+
+  article.appendChild(ah2);
+  article.appendChild(ap);
+  article.appendChild(pOne);
+  article.appendChild(pTwo);
+  article.appendChild(pThree);
+  article.appendChild(aspan);
+
+  article.classList.add('article');
+  ap.classList.add('date');
+  aspan.classList.add('expandButton');
+
+  ah2.textContent = title;
+  ap.textContent = date;
+  pOne.textContent = firstParagraph;
+  pTwo.textContent = secondParagraph;
+  pThree.textContent = thirdParagraph;
+  aspan.textContent = "click here for article";
+
+  aspan.addEventListener('click', function(event){
+    article.classList.toggle('article-open');
+  }); 
+
+  return article;
+}
+
+});
